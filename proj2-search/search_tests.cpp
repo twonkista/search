@@ -6,10 +6,26 @@
 using namespace std;
 using namespace testing;
 
-TEST(FakeTest, PleaseDeleteOnceYouWriteSome) {
-  // If no tests exist, GoogleTest fails to compile with a fairly confusing
-  // message. We have this empty test that does nothing to allow an empty
-  // autograder submission to compile and regularly fail. Once you write your
-  // own tests for the project, you can delete this one.
-  EXPECT_THAT(1, Eq(1));
+TEST(CleanToken, OneLetter) {
+  string token = "D";
+  string res_token = "d";
+  EXPECT_THAT(cleanToken(token), StrEq(res_token))
+      << "token=\"" << token << "\"";
+
+}
+
+TEST(CleanToken, PunctInBetween) {
+  string token = ",,,hi,,there,,,";
+  string res_token = "hi,,there";
+  EXPECT_THAT(cleanToken(token), StrEq(res_token))
+      << "token=\"" << token << "\"";
+
+}
+
+TEST(CleanToken, NumLetter) {
+  string token = ",,,223A";
+  string res_token = "223a";
+  EXPECT_THAT(cleanToken(token), StrEq(res_token))
+      << "token=\"" << token << "\"";
+
 }
